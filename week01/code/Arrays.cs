@@ -9,11 +9,19 @@ public static class Arrays
     public static double[] MultiplesOf(double number, int length)
     {
         // TODO Problem 1 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // 1. Create a new array of doubles with a fixed size equal to the given 'length'.
+        double[] result = new double[length];
 
-        return []; // replace this return statement with your own
+        // 2. Loop from i = 0 up to length - 1 to populate every index of the array.
+        for (int i = 0; i < length; i++)
+        {
+            // 3. Calculate each multiple by multiplying the starting number by (i + 1) 
+            //    and store it at the current index.
+            result[i] = number * (i + 1);
+        }
+
+        // 4. Return the completed array of multiples.
+        return result;
     }
 
     /// <summary>
@@ -26,8 +34,21 @@ public static class Arrays
     public static void RotateListRight(List<int> data, int amount)
     {
         // TODO Problem 2 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // 1. Handle edge cases where the list is too short or rotation amount is invalid.
+        if (amount <= 0 || data.Count <= 1) return;
+
+        // 2. Calculate the slice index where the tail portion begins.
+        int sliceIndex = data.Count - amount;
+
+        // 3. Extract the tail elements that need to move to the front.
+        List<int> tail = data.GetRange(sliceIndex, amount);
+
+        // 4. Extract the head elements that need to shift to the back.
+        List<int> head = data.GetRange(0, sliceIndex);
+
+        // 5. Clear the original list and rebuild it with tail first, followed by head.
+        data.Clear();
+        data.AddRange(tail);
+        data.AddRange(head);
     }
 }
